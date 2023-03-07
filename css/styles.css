@@ -1,0 +1,219 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --dark-grey: hsl(0, 0%, 25%);
+    --medium-grey: hsl(0, 0%, 50%);
+    --light-grey: hsl(0, 0%, 75%);
+}
+
+body {
+    margin: 0;
+    background-color: var(--medium-grey);
+    font-family: 'Roboto', sans-serif;
+}
+
+header h1 {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 600px;
+    background-color: var(--dark-grey)
+}
+
+/* Main Menu */
+#mainMenu {
+    padding: 2rem;
+    background-color: var(--light-grey);
+    font-size: 2rem;
+    text-align: center;
+}
+
+.option-container {
+    margin: 1em 0;
+    padding: 0.25em 1em;
+    cursor: pointer;
+}
+
+.option-container:hover {
+    background-color: var(--dark-grey);
+    color: white;
+}
+
+/* How to play */
+#howToPlayMenu, #levelCompleteMenu {
+    display: none;
+    background-color: var(--light-grey);
+    padding: 0.5rem 2rem 2rem 2rem;
+}
+
+#howToPlayMenu .title {
+    text-align: center;
+}
+
+.btn {
+    display: block;
+    margin: 0.5em auto 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: hsl(202, 81%, 24%);
+    color: hsl(0, 0%, 100%);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn:hover, .btn:focus {
+    background-color: hsl(202, 81%, 34%);
+}
+
+/* Maze */
+.level-container {
+    display: none;
+    height: 100%;
+}
+
+.level-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    color: hsl(0, 0%, 90%);
+    text-align: center;
+}
+
+.level-number {
+    margin: 0;
+    width: 80%;
+    font-size: 2rem;
+}
+
+.home, .settings {
+    width: 10%;
+    font-size: 1.5rem;
+    cursor: pointer
+}
+
+.settings {
+    visibility: hidden;
+}
+
+.maze-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+}
+
+#maze {
+    display: flex;
+    flex-direction: column;
+}
+
+#maze .row {
+    display: flex;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background-color: var(--light-grey);
+    /* border: 1px solid black; */
+}
+
+.level-header {
+    align-self: flex-start;
+    justify-self: center;
+}
+
+/* Level Complete Menu */
+#levelCompleteMenu {
+    text-align: center;
+}
+
+/* Items */
+
+.items {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 80%;
+    height: 10%;
+}
+
+.item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: var(--light-grey);
+    font-size: 1.5rem;
+}
+
+/* Sprites */
+#player {
+    position: relative;
+    font-size: 2rem;
+    color: blueviolet;
+}
+
+.exit-text {
+    color: red;
+    font-weight: 700;
+}
+
+.wall {
+    background-color: var(--dark-grey);
+}
+
+.fa-key, .fa-lock {
+    font-size: 1.25rem;
+}
+
+.black-key {
+    color: black;
+}
+
+.door {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.black-door {
+    background-color: black;
+}
+
+.black-door-lock {
+    color: var(--light-grey);
+}
+
+/* Editor */
+#editor {
+    display: none;
+}
+
+#editMaze {
+    display: flex;
+}

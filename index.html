@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>Maze Game</title>
+</head>
+<body>
+    <header>
+        <h1>Maze Game</h1>
+    </header>
+    <main>
+        <div class="game-container">
+            <!-- Main Menu-->
+            <div id="mainMenu">
+                <div id="playGame" class="option-container">
+                    <span class="option">Play Game</span>
+                </div>
+                <div id="howToPlayOption" class="option-container">
+                    <span class="option">How To Play</span>
+                </div>
+                <div id="editorOption" class="option-container">
+                    <span class="option">Editor</span>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div id="howToPlayMenu">
+                <h2 class="title">How To Play</h2>
+                <p>The objective of the game is to move the player to the exit.</p>
+                <p>You can contol the player with the arrow keys.</p>
+                <ul>
+                    <li>
+                        <strong>Left Arrow:</strong>
+                        <span>Moves player left</span>
+                    </li>
+                    <li>
+                        <strong>Up Arrow:</strong>
+                        <span>Moves player up</span>
+                    </li>
+                    <li>
+                        <strong>Right Arrow:</strong>
+                        <span>Moves player right</span>
+                    </li>
+                    <li>
+                        <strong>Down Arrow:</strong>
+                        <span>Moves player down</span>
+                    </li>
+                </ul>
+                <button id="howToPlayMenuBackButton" class="how-to-play-button btn">Back to Main Menu</button>
+            </div>
+
+            <!-- Level -->
+            <div class="level-container">
+                <div class="level-header">
+                    <i id="home" class="fa-solid fa-house home"></i>
+                    <h2 id="level" class="level-number"></h2>
+                    <i class="fa-solid fa-gear settings"></i>
+                </div>
+                <div class="maze-container">
+                    <div id="maze"></div>
+                </div>
+                <div class="items">
+                    <!-- <div class="item-container">
+                        <i class="item fa-solid fa-person"></i>
+                    </div>
+                    <div class="item-container">
+                        <i class="item fa-solid fa-key"></i>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- Level Complete -->
+            <div id="levelCompleteMenu">
+                <h2 id="levelCompleteTitle"></h2>
+                <button id="nextLevelButton" class="next-level-btn btn">Next Level</button>
+                <button id="mainMenuButton" class="main-menu-btn btn">Main Menu</button>
+            </div>
+
+            <!-- Editor -->
+            <div id="editor">
+                <div id="editMaze"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/a3ffa57924.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
