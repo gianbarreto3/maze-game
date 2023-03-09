@@ -5,8 +5,8 @@ export const Keys = {
     DOWN_ARROW: 'ArrowDown'
 };
 
-export const Cell = {
-    Empty: 0,
+export const Object = {
+    None: 0,
     Player: 1,
     Exit: 2,
     Wall: 3,
@@ -21,10 +21,6 @@ export const Direction = {
     Down: 3
 }
 
-export const Items = {
-    BlackKey: 'BlackKey'
+export const Color = {
+    Black: 'Black'
 };
-
-export const ItemToIconClasses = {
-    BlackKey: ['fa-solid', 'fa-key', 'black-key']
-}

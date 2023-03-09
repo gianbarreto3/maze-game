@@ -10,7 +10,6 @@ To preview mark down use CTRL + SHIFT + V
 
 ### Tasks to do
 
-- Create level 5 with door and key
 - Add colored keys and colored doors
 - Add hammer to break chest.
   - Once chest is broken a key will appear for player to grab
@@ -36,3 +35,7 @@ To preview mark down use CTRL + SHIFT + V
 - Create level 2 with walls
 - Create level 3 with more walls and bigger maze
 - Create level 4 with even more walls
+- Create level 5 with door and key
+- Refactor code to use classes
+- Add timer for each level
+  - If timer runs out, the player loses and the game over screen should appear.

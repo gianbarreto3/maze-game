@@ -28,8 +28,8 @@ function addRowToMaze(maze, numberOfCells) {
 function toggleWall(event) {
     const cell = event.srcElement;
 
-    if (cell.classList.contains('wall'))
-        cell.classList.remove('wall');
+    if (cell.classList.contains('cell--grey'))
+        cell.classList.remove('cell--grey');
     else
-        cell.classList.add('wall');
+        cell.classList.add('cell--grey');
 }

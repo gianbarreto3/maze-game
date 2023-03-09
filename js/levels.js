@@ -1,81 +1,86 @@
-import { Cell } from './enums.js';
+import { Object } from './enums.js';
 
 const level1 = {
     number: 1,
     maze: [
-        [Cell.Player, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Exit]
+        [Object.Player, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.Exit]
     ],
     playerStartPosition: {
         xPosition: 0,
         yPosition: 0
-    }
+    },
+    completionTime: 5
 };
 
 const level2 = {
     number: 2,
     maze: [
-        [Cell.Player, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Exit]
+        [Object.Player, Object.Wall, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.Wall],
+        [Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Exit]
         
     ],
     playerStartPosition: {
         xPosition: 0,
         yPosition: 0
-    }
+    },
+    completionTime: 5
 };
 
 const level3 = {
     number: 3,
     maze: [
-        [Cell.Player, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Exit],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall],
-        [Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall],
+        [Object.Player, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Exit],
+        [Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall],
+        [Object.None, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall],
+        [Object.None, Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.Wall],
     ],
     playerStartPosition: {
         xPosition: 0,
         yPosition: 0
-    }
+    },
+    completionTime: 7
 };
 
 const level4 = {
     number: 4,
     maze: [
-        [Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty],
-        [Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall],
-        [Cell.Player, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty],
-        [Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall],
-        [Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Exit],
-        [Cell.Empty, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty]
+        [Object.Wall, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None],
+        [Object.Wall, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall],
+        [Object.Player, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None],
+        [Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.None, Object.None],
+        [Object.None, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall],
+        [Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.Exit],
+        [Object.None, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.None, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None]
     ],
     playerStartPosition: {
         xPosition: 0,
         yPosition: 2
-    }
+    },
+    completionTime: 7
 };
 
 const level5 = {
     number: 5,
     maze: [
-        [Cell.Player, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty],
-        [Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall],
-        [Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.BlackKey, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty],
-        [Cell.Empty, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty],
-        [Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Wall, Cell.Wall, Cell.Empty, Cell.Wall, Cell.BlackDoor],
-        [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Wall, Cell.Exit]
+        [Object.Player, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None],
+        [Object.None, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall],
+        [Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.None, Object.Wall, Object.None, Object.Wall, Object.BlackKey, Object.None, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None],
+        [Object.None, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.BlackDoor],
+        [Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.Exit]
     ],
     playerStartPosition: {
         xPosition: 0,
         yPosition: 0
-    }
+    },
+    completionTime: 10
 };
 
 export const levels = {
@@ -87,4 +92,4 @@ export const levels = {
     total: 5
 };
 
-// Empty Row: [Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty, Cell.Empty]
+// None Row: [Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None]

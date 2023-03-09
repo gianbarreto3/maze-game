@@ -1,7 +1,8 @@
-import { Cell, Direction, ItemToIconClasses, Keys } from "./enums.js";
+import { Direction, Keys } from "./enums.js";
 import { Player } from "./player.js";
 import { renderItems, renderLevel } from "./level-renderer.js";
 import { levels } from './levels.js';
+import { Maze } from "./maze.js";
 
 export class Game {
 
@@ -9,15 +10,7 @@ export class Game {
     mazeElement;
     player;
     currentLevel;
-
-    cloneMaze(maze) {
-        let mazeClone = [];
-
-        for (let row of maze)
-            mazeClone.push([ ...row ]);
-
-        return mazeClone;
-    }
+    levelTimer;
 
     initialize() {
         this.maze = [];
@@ -28,12 +21,13 @@ export class Game {
 
     loadLevel(level) {
         this.currentLevel = level.number;
-        this.maze = this.cloneMaze(level.maze);
+        this.maze = new Maze(level.maze);
         this.player = new Player(
             level.playerStartPosition.xPosition, 
             level.playerStartPosition.yPosition
         );
-        renderLevel(level);
+        renderLevel(level.number, this.maze.board);
+        this.levelTimer = this.startTimer(level.completionTime);
     }
 
     loadNextLevel() {
@@ -42,6 +36,7 @@ export class Game {
     }
 
     levelCompleted() {
+        this.endTimer();
         const gameContainer = document.getElementsByClassName('game-container')[0];
         const levelContainer = document.getElementsByClassName('level-container')[0];
         const levelCompleteMenu = document.getElementById('levelCompleteMenu');
@@ -53,8 +48,13 @@ export class Game {
         levelCompleteMenu.style.display = 'block';
         gameContainer.style.display = 'flex';
 
-        if (this.currentLevel == levels.total)
+        if (this.currentLevel == levels.total) {
             nextLevelButton.style.display = 'none';
+            const mainMenuButton = document.getElementById('mainMenuButton');
+            mainMenuButton.focus();
+        } else {
+            nextLevelButton.focus();
+        }
     }
 
     playerMoved(previousPlayerPositionX, previousPlayerPositionY) {
@@ -72,61 +72,60 @@ export class Game {
 
         switch (event.key) {
             case Keys.LEFT_ARROW:
-                toCell = playerPositionX - 1 > -1 ? this.maze[playerPositionY][playerPositionX - 1] : null;
+                toCell = playerPositionX - 1 > -1 ? this.maze.getCell(playerPositionX - 1, playerPositionY) : null;
                 this.player.move(Direction.Left, toCell);
                 break;
             case Keys.UP_ARROW:
-                toCell = playerPositionY - 1 > -1 ? this.maze[playerPositionY - 1][playerPositionX] : null;
+                toCell = playerPositionY - 1 > -1 ? this.maze.getCell(playerPositionX, playerPositionY - 1) : null;
                 this.player.move(Direction.Up, toCell);
                 break;
             case Keys.RIGHT_ARROW:
-                toCell = playerPositionX + 1 < this.maze[0].length ? this.maze[playerPositionY][playerPositionX + 1] : null;
+                toCell = playerPositionX + 1 < this.maze.board[0].length ? this.maze.getCell(playerPositionX + 1, playerPositionY) : null;
                 this.player.move(Direction.Right, toCell);
                 break;
             case Keys.DOWN_ARROW:
-                toCell = playerPositionY + 1 < this.maze.length ? this.maze[playerPositionY + 1][playerPositionX] : null;
+                toCell = playerPositionY + 1 < this.maze.board.length ? this.maze.getCell(playerPositionX, playerPositionY + 1) : null;
                 this.player.move(Direction.Down, toCell);
                 break;
         }
 
         if (this.playerMoved(playerPositionX, playerPositionY)) {
-            if (this.cellContainsItem(toCell)) {
-                this.player.pickupItem(toCell);
-                this.removeItemFromMaze(toCell);
+            if (toCell.containsItem() || toCell.containsDoor()) {
+                toCell.removeSprite();
                 renderItems(this.player.items);
-            } else if (this.player.isDoor(toCell)) {
-                this.player.useItem(toCell);
-                this.removeDoorFromMaze(toCell);
-                renderItems(this.player.items);
-                
-            } else if (toCell === Cell.Exit)
+            } else if (toCell.isExit())
                 setTimeout(() => this.levelCompleted(), 10);
         }
     }
 
-    cellContainsItem(toCell) {
-        return toCell === Cell.BlackKey;
-    }
+    startTimer(levelCompletionTime) {
+        const timer = document.getElementById('timer');
+        timer.innerText = `${levelCompletionTime}s`;
 
-    removeDoorFromMaze(toCell) {
-        if (toCell === Cell.BlackDoor) {
-            const blackDoor = document.getElementsByClassName('black-door')[0];
-            blackDoor.parentElement.innerHTML = '';
+        function decrementTimer() {
+            timer.innerText = `${--levelCompletionTime}s`;
+            if (levelCompletionTime === 0)
+                this.gameOver();
         }
 
-        this.clearCurrentCell();
+        return setInterval(decrementTimer.bind(this), 1000);
     }
 
-    removeItemFromMaze(toCell) {
-        if (toCell === Cell.BlackKey) {
-            const blackKey = document.getElementsByClassName('black-key')[0];
-            blackKey.parentElement.innerHTML = '';
-        }
-
-        this.clearCurrentCell();
+    endTimer() {
+        clearInterval(this.levelTimer);
+        this.levelTimer = null;
     }
 
-    clearCurrentCell() {
-        this.maze[this.player.yPosition][this.player.xPosition] = Cell.Empty;
+    gameOver() {
+        this.endTimer();
+        const gameContainer = document.getElementsByClassName('game-container')[0];
+        const gameOverScreen = document.getElementById('gameOverScreen');
+        const levelContainer = document.getElementsByClassName('level-container')[0];
+        const startOverButton = document.getElementById('startOverButton');
+
+        levelContainer.style.display = 'none';
+        gameOverScreen.style.display = 'block';
+        gameContainer.style.display = 'flex';
+        startOverButton.focus();
     }
 }

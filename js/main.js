@@ -2,8 +2,9 @@ import { Game } from "./game.js";
 import { renderMaze } from "./editor.js";
 
 const game = new Game();
-const howToPlayMenu = document.getElementById('howToPlayMenu');
 const gameContainer = document.getElementsByClassName('game-container')[0];
+const gameOverScreen = document.getElementById('gameOverScreen');
+const howToPlayMenu = document.getElementById('howToPlayMenu');
 const levelCompleteMenu = document.getElementById('levelCompleteMenu');
 const levelContainer = document.getElementsByClassName('level-container')[0];
 const mainMenu = document.getElementById('mainMenu');
@@ -29,6 +30,7 @@ function handleHowToPlayMenuBackButtonClick() {
 }
 
 function handleHomeButtonClick() {
+    game.endTimer();
     levelContainer.style.display = 'none';
     gameContainer.style.display = 'flex';
     mainMenu.style.display = 'block';
@@ -56,6 +58,19 @@ function handleEditorOptionClick() {
     renderMaze();
 }
 
+function handleGameOverMainMenuButtonClick() {
+    gameOverScreen.style.display = 'none';
+    mainMenu.style.display = 'block';
+}
+
+function handleStartOverButtonClick() {
+    gameOverScreen.style.display = 'none';
+    levelContainer.style.display = 'block';
+    gameContainer.style.display = 'block';
+
+    game.initialize();
+}
+
 (() => {
     const playGameOption = document.getElementById('playGame');
     playGameOption.addEventListener('click', initializeGame);
@@ -76,4 +91,10 @@ function handleEditorOptionClick() {
     mainMenuButton.addEventListener('click', handleMainMenuButtonClick);
 
     nextLevelButton.addEventListener('click', handleNextLevelButtonClick);
+
+    const gameOverMainMenuButton = document.getElementById('gameOverMainMenuButton');
+    gameOverMainMenuButton.addEventListener('click', handleGameOverMainMenuButtonClick);
+
+    const startOverButton = document.getElementById('startOverButton');
+    startOverButton.addEventListener('click', handleStartOverButtonClick);
 })();

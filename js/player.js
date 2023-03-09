@@ -1,4 +1,4 @@
-import { Cell, Direction, Items } from './enums.js';
+import { Direction } from './enums.js';
 
 export class Player {
     
@@ -13,36 +13,33 @@ export class Player {
     }
 
     canMove(toCell) {
-        if (toCell === null || toCell === Cell.Wall)
+        if (toCell === null || toCell.containsWall())
             return false;
-        else if (this.isDoor(toCell) && !this.canOpenDoor(toCell)) {
-            return false;
+        if (toCell.containsDoor()) {
+            return this.unlockDoor(toCell.sprite);
         }
-        
+
         return true;
     }
 
-    canOpenDoor(toCell) {
-        if (toCell === Cell.BlackDoor && this.items.includes(Items.BlackKey))
-            return true;
+    unlockDoor(door) {
+        const keyNeeded = door.keyRequired();
+        for (let item of this.items) {
+            if (item.name === keyNeeded) {
+                this.useItem(item);
+                return true;
+            }
+        }
 
         return false;
     }
 
-    isDoor(cell) {
-        return cell === Cell.BlackDoor;
+    pickupItem(item) {
+        this.items.push(item);
     }
 
-    pickupItem(toCell) {
-        if (toCell === Cell.BlackKey) {
-            this.items.push(Items.BlackKey);
-        }
-    }
-
-    useItem(toCell) {
-        if (toCell === Cell.BlackDoor) {
-            this.items = this.items.filter(item => item !== Items.BlackKey);
-        }
+    useItem(itemToUse) {
+        this.items = this.items.filter(item => item.name !== itemToUse.name);
     }
 
     move(direction, toCell) {
@@ -60,6 +57,9 @@ export class Player {
                 case Direction.Down:
                     this.moveDown();
             }
+
+            if (toCell.containsItem())
+                this.pickupItem(toCell.sprite);
         }
     }
 
