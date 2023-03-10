@@ -38,7 +38,7 @@ const level3 = {
         xPosition: 0,
         yPosition: 0
     },
-    completionTime: 7
+    completionTime: 5
 };
 
 const level4 = {
@@ -59,7 +59,7 @@ const level4 = {
         xPosition: 0,
         yPosition: 2
     },
-    completionTime: 7
+    completionTime: 5
 };
 
 const level5 = {
@@ -122,7 +122,7 @@ const level7 = {
         xPosition: 4,
         yPosition: 0
     },
-    completionTime: 20
+    completionTime: 18
 };
 
 const level8 = {
@@ -143,7 +143,7 @@ const level8 = {
         xPosition: 0,
         yPosition: 9
     },
-    completionTime: 12
+    completionTime: 10
 };
 
 const level9 = {
@@ -157,14 +157,77 @@ const level9 = {
         [Object.None, Object.Wall, Object.Wall, Object.Wall, Object.BlueDoor, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None],
         [Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None],
         [Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.None],
-        [Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.None, Object.Wall, Object.None, Object.Wall, Object.None],
-        [Object.BlueKeyChest, Object.Wall, Object.None, Object.Wall, Object.None, Object.Exit, Object.GreenDoor, Object.None, Object.Wall, Object.GreenKeyChest]
+        [Object.None, Object.Wall, Object.None, Object.Wall, Object.Exit, Object.None, Object.Wall, Object.None, Object.Wall, Object.None],
+        [Object.BlueKeyChest, Object.Wall, Object.None, Object.Wall, Object.None, Object.None, Object.GreenDoor, Object.None, Object.Wall, Object.GreenKeyChest]
     ],
     playerStartPosition: {
         xPosition: 9,
         yPosition: 1
     },
-    completionTime: 17
+    completionTime: 15
+};
+
+const level10 = {
+    number: 10,
+    maze: [
+        [Object.Player, Object.Wall, Object.Wall, Object.Wall, Object.BlueButton, Object.Wall, Object.None, Object.None, Object.None, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.GreenButton],
+        [Object.BluePanel, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None],
+        [Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.Wall],
+        [Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Wall, Object.None, Object.None, Object.None],
+        [Object.None, Object.Wall, Object.None, Object.None, Object.Wall, Object.GreenPanel, Object.Wall, Object.None, Object.None, Object.None],
+        [Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None],
+        [Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.Wall, Object.RedPanel, Object.Wall],
+        [Object.None, Object.Crate, Object.None, Object.None, Object.None, Object.None, Object.RedButtonReset, Object.Wall, Object.None, Object.Exit]
+    ],
+    playerStartPosition: {
+        xPosition: 0,
+        yPosition: 0
+    },
+    completionTime: 12
+};
+
+const level11 = {
+    number: 11,
+    maze: [
+        [Object.Hammer, Object.None, Object.None, Object.None, Object.Wall, Object.Wall, Object.None, Object.None, Object.None, Object.Exit],
+        [Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall, Object.Wall, Object.BlackDoor, Object.Wall, Object.Wall, Object.Wall],
+        [Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.Wall],
+        [Object.Wall, Object.None, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.RGBPanel, Object.Wall, Object.BlueDoor, Object.Wall],
+        [Object.Wall, Object.None, Object.Wall, Object.RGBButtonGreen, Object.None, Object.None, Object.Player, Object.Wall, Object.None, Object.Wall],
+        [Object.Wall, Object.None, Object.Wall, Object.None, Object.None, Object.None, Object.None, Object.Wall, Object.None, Object.Wall],
+        [Object.Wall, Object.BlueKey, Object.Wall, Object.RGBButtonRed, Object.None, Object.None, Object.RGBButtonBlue, Object.Wall, Object.None, Object.Wall],
+        [Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.None, Object.Wall],
+        [Object.Wall, Object.BlackKeyChest, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.Wall],
+        [Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall, Object.Wall]
+    ],
+    playerStartPosition: {
+        xPosition: 6,
+        yPosition: 4
+    },
+    completionTime: 18
+};
+
+const level12 = {
+    number: 12,
+    maze: [
+        [Object.Player, Object.InvisibleWall, Object.InvisibleWall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None],
+        [Object.None, Object.None, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None],
+        [Object.None, Object.InvisibleWall, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None],
+        [Object.None, Object.InvisibleWall, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None],
+        [Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.None],
+        [Object.None, Object.None, Object.InvisibleWall, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.None],
+        [Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall, Object.InvisibleWall],
+        [Object.None, Object.InvisibleWall, Object.InvisibleWall, Object.None, Object.InvisibleWall, Object.None, Object.None, Object.None, Object.InvisibleWall, Object.None],
+        [Object.None, Object.None, Object.None, Object.None, Object.None, Object.None, Object.InvisibleWall, Object.None, Object.None, Object.Exit]
+    ],
+    playerStartPosition: {
+        xPosition: 0,
+        yPosition: 0
+    },
+    completionTime: 10
 };
 
 export const levels = {
@@ -177,7 +240,10 @@ export const levels = {
     level7,
     level8,
     level9,
-    total: 9
+    level10,
+    level11,
+    level12,
+    total: 12
 };
 
 /*

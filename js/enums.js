@@ -19,7 +19,20 @@ export const Object = {
     Hammer: 10,
     BlackKeyChest: 11,
     BlueKeyChest: 12,
-    GreenKeyChest: 13
+    GreenKeyChest: 13,
+    BlueButton: 14,
+    GreenButton: 15,
+    RedButton: 16,
+    BluePanel: 17,
+    GreenPanel: 18,
+    RedPanel: 19,
+    RedButtonReset: 20,
+    Crate: 21,
+    RGBPanel: 22,
+    RGBButtonBlue: 23,
+    RGBButtonGreen: 24,
+    RGBButtonRed: 25,
+    InvisibleWall: 26
 };
 
 export const Direction = {
@@ -33,5 +46,6 @@ export const Color = {
     Black: 'black',
     Blue: 'blue',
     Brown: 'brown',
-    Green: 'green'
+    Green: 'green',
+    Red: 'red'
 };

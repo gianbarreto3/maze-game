@@ -2,8 +2,8 @@ import { Sprite } from "./sprite.js";
 
 export class Wall extends Sprite {
 
-    constructor() {
-        super('wall');
+    constructor(invisible) {
+        super(invisible ? 'invisible-wall' : 'wall');
     }
 
     createSprite() {

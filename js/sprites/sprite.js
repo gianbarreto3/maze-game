@@ -8,8 +8,7 @@ export class Sprite {
         throw new Error('Subclass must override this method');
     }
 
-    getParentElement() {
-        const sprite = document.getElementsByClassName(this.name)[0];
-        return sprite.parentElement;
+    getElement() {
+        return document.getElementsByClassName(this.name)[0];
     }
 }

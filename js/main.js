@@ -63,12 +63,12 @@ function handleGameOverMainMenuButtonClick() {
     mainMenu.style.display = 'block';
 }
 
-function handleStartOverButtonClick() {
+function handleRestartLevelButtonClick() {
     gameOverScreen.style.display = 'none';
     levelContainer.style.display = 'block';
     gameContainer.style.display = 'block';
 
-    game.initialize();
+    game.restartLevel();
 }
 
 (() => {
@@ -95,6 +95,6 @@ function handleStartOverButtonClick() {
     const gameOverMainMenuButton = document.getElementById('gameOverMainMenuButton');
     gameOverMainMenuButton.addEventListener('click', handleGameOverMainMenuButtonClick);
 
-    const startOverButton = document.getElementById('startOverButton');
-    startOverButton.addEventListener('click', handleStartOverButtonClick);
+    const restartLevelButton = document.getElementById('restartLevelButton');
+    restartLevelButton.addEventListener('click', handleRestartLevelButtonClick);
 })();

@@ -40,6 +40,7 @@ function addCellToRow(row, cell) {
         cellDiv.appendChild(sprite);
     }
 
+    cell.element = cellDiv;
     row.appendChild(cellDiv);
 }
 

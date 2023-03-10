@@ -3,6 +3,7 @@ import { Player } from "./player.js";
 import { renderItems, renderLevel } from "./level-renderer.js";
 import { levels } from './levels.js';
 import { Maze } from "./maze.js";
+import { RGBPanel } from "./sprites/rgb-panel.js";
 
 export class Game {
 
@@ -12,6 +13,7 @@ export class Game {
     currentLevel;
     levelTimer;
     currentLevelTime;
+    #cellWhosePanelWasRemoved;
 
     initialize() {
         this.maze = [];
@@ -62,30 +64,36 @@ export class Game {
             previousPlayerPositionY !== this.player.yPosition;
     }
 
+    restartLevel() {
+        const level = `level${this.currentLevel}`;
+        this.loadLevel(levels[level]);
+    }
+
     setPlayerControls(event) {
         if (event.repeat)
             return;
 
         const playerPositionX = this.player.xPosition;
         const playerPositionY = this.player.yPosition;
+        const previousCell = this.maze.getCell(playerPositionX, playerPositionY);
         let toCell;
 
         switch (event.key) {
             case Keys.LEFT_ARROW:
                 toCell = playerPositionX - 1 > -1 ? this.maze.getCell(playerPositionX - 1, playerPositionY) : null;
-                this.player.move(Direction.Left, toCell);
+                this.player.move(Direction.Left, toCell, this.maze);
                 break;
             case Keys.UP_ARROW:
                 toCell = playerPositionY - 1 > -1 ? this.maze.getCell(playerPositionX, playerPositionY - 1) : null;
-                this.player.move(Direction.Up, toCell);
+                this.player.move(Direction.Up, toCell, this.maze);
                 break;
             case Keys.RIGHT_ARROW:
                 toCell = playerPositionX + 1 < this.maze.board[0].length ? this.maze.getCell(playerPositionX + 1, playerPositionY) : null;
-                this.player.move(Direction.Right, toCell);
+                this.player.move(Direction.Right, toCell, this.maze);
                 break;
             case Keys.DOWN_ARROW:
                 toCell = playerPositionY + 1 < this.maze.board.length ? this.maze.getCell(playerPositionX, playerPositionY + 1) : null;
-                this.player.move(Direction.Down, toCell);
+                this.player.move(Direction.Down, toCell, this.maze);
                 break;
         }
 
@@ -93,6 +101,24 @@ export class Game {
             if (toCell.containsItem() || toCell.containsDoor() || toCell.containsChest()) {
                 toCell.removeSprite();
                 renderItems(this.player.items);
+            } else if (toCell.containsButton()) {
+                const button = toCell.sprite;
+                if (!button.pressed) {
+                    button.press();
+
+                    if (button.panel instanceof RGBPanel) {
+                        if (button.panel.canBeOpened(this.player, this.maze)) {
+                            this.maze.removeSprite(button.panel.name);
+                        }
+                    } else {
+                        this.#cellWhosePanelWasRemoved = this.maze.removeSprite(button.panel.name);
+                    }
+                }
+            } else if (previousCell.containsButton() && previousCell.sprite.pressed && previousCell.sprite.reset) {
+                const button = previousCell.sprite;
+                button.unpress();
+                this.#cellWhosePanelWasRemoved.sprite = button.panel;
+                this.#cellWhosePanelWasRemoved.element.appendChild(button.panel.createSprite());
             } else if (toCell.isExit() && this.currentLevelTime > 0) {
                 this.endTimer();
                 this.levelCompleted()
@@ -124,11 +150,11 @@ export class Game {
         const gameContainer = document.getElementsByClassName('game-container')[0];
         const gameOverScreen = document.getElementById('gameOverScreen');
         const levelContainer = document.getElementsByClassName('level-container')[0];
-        const startOverButton = document.getElementById('startOverButton');
+        const restartLevelButton = document.getElementById('restartLevelButton');
 
         levelContainer.style.display = 'none';
         gameOverScreen.style.display = 'block';
         gameContainer.style.display = 'flex';
-        startOverButton.focus();
+        restartLevelButton.focus();
     }
 }

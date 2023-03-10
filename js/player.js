@@ -1,4 +1,5 @@
 import { Direction } from './enums.js';
+import { Maze } from './maze.js';
 
 export class Player {
     
@@ -10,15 +11,34 @@ export class Player {
         this.top = 0;
         this.left = 0;
         this.items = [];
+        this.buttonsPressed = [];
     }
 
-    canMove(toCell) {
-        if (toCell === null || toCell.containsWall())
+    canMove(toCell, maze) {
+        if (toCell === null || toCell.containsWall() || toCell.containsPanel()) {
             return false;
-        else if (toCell.containsDoor()) {
+        } else if (toCell.containsDoor()) {
             return this.unlockDoor(toCell.sprite);
         } else if (toCell.containsChest()) {
             return this.openChest(toCell.sprite);
+        } else if (toCell.containsCrate()) {
+            const cellToRight = maze.getCellToRight(this.xPosition, this.yPosition);
+            if (toCell !== cellToRight)
+                return false;
+            else {
+                const cellToRightOfCrate = maze.getCell(this.xPosition + 2, this.yPosition);
+                if (cellToRightOfCrate.containsWall())
+                    return false;
+
+                if (cellToRightOfCrate.containsButton()) {
+                    const button  = cellToRightOfCrate.sprite;
+                    button.press;
+                    maze.removeSprite(button.panel.name);
+                }
+                const crate = cellToRight.sprite;
+                cellToRight.removeSprite();
+                cellToRightOfCrate.addSprite(crate);
+            }
         }
 
         return true;
@@ -56,8 +76,8 @@ export class Player {
         this.items = this.items.filter(item => item.name !== itemToUse.name);
     }
 
-    move(direction, toCell) {
-        if (this.canMove(toCell)) {
+    move(direction, toCell, maze) {
+        if (this.canMove(toCell, maze)) {
             switch (direction) {
                 case Direction.Left:
                     this.moveLeft();
@@ -74,6 +94,8 @@ export class Player {
 
             if (toCell.containsItem())
                 this.pickupItem(toCell.sprite);
+            else if (toCell.containsButton() && !toCell.sprite.pressed)
+                this.buttonsPressed.push(toCell.sprite.name);
         }
     }
 
