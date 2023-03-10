@@ -15,11 +15,25 @@ export class Player {
     canMove(toCell) {
         if (toCell === null || toCell.containsWall())
             return false;
-        if (toCell.containsDoor()) {
+        else if (toCell.containsDoor()) {
             return this.unlockDoor(toCell.sprite);
+        } else if (toCell.containsChest()) {
+            return this.openChest(toCell.sprite);
         }
 
         return true;
+    }
+
+    openChest(chest) {
+        const itemNeeded = chest.itemRequiredToOpen();
+        for (let item of this.items) {
+            if (item.name === itemNeeded) {
+                this.pickupItem(chest.open());
+                return true;
+            }
+        }
+
+        return false;
     }
 
     unlockDoor(door) {

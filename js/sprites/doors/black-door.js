@@ -12,7 +12,7 @@ export class BlackDoor extends Door {
         blackDoor.classList.add('door', this.name);
 
         const lock = document.createElement('i');
-        lock.classList.add('fa-solid', 'fa-lock', 'black-door-lock');
+        lock.classList.add('fa-solid', 'fa-lock', 'door-lock');
         blackDoor.appendChild(lock);
 
         return blackDoor;

@@ -10,7 +10,7 @@ To preview mark down use CTRL + SHIFT + V
 
 ### Tasks to do
 
-- Add colored keys and colored doors
+
 - Add hammer to break chest.
   - Once chest is broken a key will appear for player to grab
 - Create colored buttons that will need to be stepped on in the right order to open a door
@@ -39,3 +39,4 @@ To preview mark down use CTRL + SHIFT + V
 - Refactor code to use classes
 - Add timer for each level
   - If timer runs out, the player loses and the game over screen should appear.
+- Add colored keys and colored doors

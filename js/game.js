@@ -11,6 +11,7 @@ export class Game {
     player;
     currentLevel;
     levelTimer;
+    currentLevelTime;
 
     initialize() {
         this.maze = [];
@@ -36,7 +37,6 @@ export class Game {
     }
 
     levelCompleted() {
-        this.endTimer();
         const gameContainer = document.getElementsByClassName('game-container')[0];
         const levelContainer = document.getElementsByClassName('level-container')[0];
         const levelCompleteMenu = document.getElementById('levelCompleteMenu');
@@ -90,21 +90,24 @@ export class Game {
         }
 
         if (this.playerMoved(playerPositionX, playerPositionY)) {
-            if (toCell.containsItem() || toCell.containsDoor()) {
+            if (toCell.containsItem() || toCell.containsDoor() || toCell.containsChest()) {
                 toCell.removeSprite();
                 renderItems(this.player.items);
-            } else if (toCell.isExit())
-                setTimeout(() => this.levelCompleted(), 10);
+            } else if (toCell.isExit() && this.currentLevelTime > 0) {
+                this.endTimer();
+                this.levelCompleted()
+            }
         }
     }
 
     startTimer(levelCompletionTime) {
         const timer = document.getElementById('timer');
         timer.innerText = `${levelCompletionTime}s`;
+        this.currentLevelTime = levelCompletionTime;
 
         function decrementTimer() {
-            timer.innerText = `${--levelCompletionTime}s`;
-            if (levelCompletionTime === 0)
+            timer.innerText = `${--this.currentLevelTime}s`;
+            if (this.currentLevelTime === 0)
                 this.gameOver();
         }
 

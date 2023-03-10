@@ -11,7 +11,15 @@ export const Object = {
     Exit: 2,
     Wall: 3,
     BlackKey: 4,
-    BlackDoor: 5
+    BlackDoor: 5,
+    GreenKey: 6,
+    GreenDoor: 7,
+    BlueKey: 8,
+    BlueDoor: 9,
+    Hammer: 10,
+    BlackKeyChest: 11,
+    BlueKeyChest: 12,
+    GreenKeyChest: 13
 };
 
 export const Direction = {
@@ -22,5 +30,8 @@ export const Direction = {
 }
 
 export const Color = {
-    Black: 'Black'
+    Black: 'black',
+    Blue: 'blue',
+    Brown: 'brown',
+    Green: 'green'
 };

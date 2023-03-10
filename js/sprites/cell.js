@@ -1,4 +1,5 @@
 import { Door } from "./doors/door.js";
+import { Chest } from "./chest.js";
 import { Exit } from "./exit.js";
 import { Item } from "./item.js";
 import { Key } from "./keys/key.js";
@@ -11,6 +12,10 @@ export class Cell {
 
     containsDoor() {
         return this.sprite instanceof Door;
+    }
+
+    containsChest() {
+        return this.sprite instanceof Chest;
     }
 
     containsItem() {

@@ -137,7 +137,7 @@ main {
     width: 45px;
     height: 45px;
     background-color: var(--light-grey);
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .level-header {
@@ -196,12 +196,20 @@ main {
     background-color: var(--dark-grey);
 }
 
-.fa-key, .fa-lock {
+.fa-key, .fa-lock, .fa-hammer, .fa-toolbox {
     font-size: 1.25rem;
 }
 
 .black-key {
     color: black;
+}
+
+.blue-key {
+    color: blue;
+}
+
+.green-key {
+    color: green;
 }
 
 .door {
@@ -216,8 +224,32 @@ main {
     background-color: black;
 }
 
-.black-door-lock {
+.blue-door {
+    background-color: blue;
+}
+
+.green-door {
+    background-color: darkgreen;
+}
+
+.door-lock {
     color: var(--light-grey);
+}
+
+.hammer {
+    color: brown;
+}
+
+.brown-chest {
+    color: brown;
+}
+
+.blue-chest {
+    color: blue;
+}
+
+.green-chest {
+    color: darkgreen;
 }
 
 /* Editor */
@@ -231,4 +263,8 @@ main {
 
 .cell--grey {
     background-color: var(--dark-grey);
+}
+
+.editor-cell {
+    border: 1px solid black;
 }

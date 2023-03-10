@@ -10,7 +10,7 @@ export function renderMaze() {
 
 function addCellToRow(row) {
     let cellDiv = document.createElement('div');
-    cellDiv.classList.add('cell');
+    cellDiv.classList.add('cell', 'editor-cell');
 
     cellDiv.addEventListener('click', toggleWall);
     row.appendChild(cellDiv);

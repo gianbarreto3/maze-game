@@ -1,10 +1,6 @@
 export function renderItems(items) {
     const itemsContainer = document.getElementsByClassName('items')[0];
-
-    if (!items?.length) {
-        itemsContainer.innerHTML = '';
-        return;
-    }
+    itemsContainer.innerHTML = '';
 
     for (let item of items) {
         const itemContainer = document.createElement('div');
@@ -20,7 +16,7 @@ export function renderItems(items) {
 export function renderLevel(levelNumber, mazeBoard) {
     renderLevelNumber(levelNumber);
     renderMaze(mazeBoard);
-    renderItems(null);
+    renderItems([]);
 }
 
 function renderLevelNumber(levelNumber) {
