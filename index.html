@@ -32,47 +32,49 @@
             <!-- Controls -->
             <div id="howToPlayMenu">
                 <h2 class="title">How To Play</h2>
-                <p>The objective of the game is to move the player to the exit.</p>
-                <p>You can contol the player with the arrow keys.</p>
+                <p>The objective of the game is to move the player to the <br /> exit before the time runs out.</p>
+                <p>Player Controls:</p>
                 <ul>
                     <li>
-                        <strong>Left Arrow:</strong>
+                        <strong>Left Arrow or A:</strong>
                         <span>Moves player left</span>
                     </li>
                     <li>
-                        <strong>Up Arrow:</strong>
+                        <strong>Up Arrow or W:</strong>
                         <span>Moves player up</span>
                     </li>
                     <li>
-                        <strong>Right Arrow:</strong>
+                        <strong>Right Arrow or D:</strong>
                         <span>Moves player right</span>
                     </li>
                     <li>
-                        <strong>Down Arrow:</strong>
+                        <strong>Down Arrow or S:</strong>
                         <span>Moves player down</span>
                     </li>
+                    <li>
+                        <strong>R:</strong>
+                        <span>Restart Level</span>
+                    </li>
                 </ul>
-                <button id="howToPlayMenuBackButton" class="how-to-play-button btn">Back to Main Menu</button>
+                <button id="howToPlayMenuBackButton" class="how-to-play-button btn">Main Menu</button>
             </div>
 
             <!-- Level -->
             <div class="level-container">
                 <div class="level-header">
                     <i id="home" class="fa-solid fa-house home"></i>
-                    <h2 id="level" class="level-number"></h2>
-                    <i class="fa-solid fa-gear settings"></i>
+                    <div class="level-number-container">
+                        <h2 id="level" class="level-number"></h2>
+                    </div>
+                    <div class="timer-container">
+                        <i class="fa-solid fa-clock"></i>
+                        <span id="timer"></span>
+                    </div>
                 </div>
                 <div class="maze-container">
                     <div id="maze"></div>
                 </div>
-                <div class="items">
-                    <!-- <div class="item-container">
-                        <i class="item fa-solid fa-person"></i>
-                    </div>
-                    <div class="item-container">
-                        <i class="item fa-solid fa-key"></i>
-                    </div> -->
-                </div>
+                <div class="items"></div>
             </div>
 
             <!-- Level Complete -->
@@ -80,6 +82,13 @@
                 <h2 id="levelCompleteTitle"></h2>
                 <button id="nextLevelButton" class="next-level-btn btn">Next Level</button>
                 <button id="mainMenuButton" class="main-menu-btn btn">Main Menu</button>
+            </div>
+
+            <!-- Game Over -->
+            <div id="gameOverScreen">
+                <h2 id="gameOverTitle">Game Over</h2>
+                <button id="restartLevelButton" class="restart-level-btn btn">Restart Level</button>
+                <button id="gameOverMainMenuButton" class="main-menu-btn btn">Main Menu</button>
             </div>
 
             <!-- Editor -->

@@ -53,7 +53,7 @@ main {
 }
 
 /* How to play */
-#howToPlayMenu, #levelCompleteMenu {
+#howToPlayMenu, #levelCompleteMenu, #gameOverScreen {
     display: none;
     background-color: var(--light-grey);
     padding: 0.5rem 2rem 2rem 2rem;
@@ -94,20 +94,24 @@ main {
     text-align: center;
 }
 
+.level-number-container {
+    width: 70%;
+}
+
 .level-number {
-    margin: 0;
-    width: 80%;
+    margin: 0 0 0 40px;
     font-size: 2rem;
 }
 
-.home, .settings {
+.home {
     width: 10%;
     font-size: 1.5rem;
-    cursor: pointer
+    cursor: pointer;
 }
 
-.settings {
-    visibility: hidden;
+.timer-container {
+    width: 20%;
+    font-size: 1.5rem;
 }
 
 .maze-container {
@@ -142,8 +146,13 @@ main {
 }
 
 /* Level Complete Menu */
-#levelCompleteMenu {
+#levelCompleteMenu, #gameOverScreen {
     text-align: center;
+}
+
+/* Game Over */
+#gameOverTitle {
+    font-size: 2rem;
 }
 
 /* Items */
@@ -182,15 +191,23 @@ main {
 }
 
 .wall {
+    width: 100%;
+    height: 100%;
     background-color: var(--dark-grey);
 }
 
-.fa-key, .fa-lock {
-    font-size: 1.25rem;
+.invisible-wall {
+    width: 100%;
+    height: 100%;
+    background-color: var(--light-grey);
+    animation-name: fade-in-and-out;
+    animation-duration: 5s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
 }
 
-.black-key {
-    color: black;
+.fa-key, .fa-lock, .fa-hammer, .fa-toolbox {
+    font-size: 1.25rem;
 }
 
 .door {
@@ -201,12 +218,76 @@ main {
     height: 100%;
 }
 
+.button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.panel {
+    width: 100%;
+    height: 100%;
+}
+
+.rgb-panel {
+    background-image: linear-gradient(to right, hsl(0, 100%, 70%), darkgreen, blue);
+}
+
+.black-key {
+    color: black;
+}
+
+.blue-key,
+.blue-chest {
+    color: blue;
+}
+
+.green-key,
+.green-chest {
+    color: darkgreen;
+}
+
 .black-door {
     background-color: black;
 }
 
-.black-door-lock {
+.blue-door,
+.blue-button,
+.blue-panel {
+    background-color: blue;
+}
+
+.green-door,
+.green-button,
+.green-panel {
+    background-color: darkgreen;
+}
+
+.red-button,
+.red-panel {
+    background-color: hsl(0, 100%, 70%);
+}
+
+.door-lock {
     color: var(--light-grey);
+}
+
+.hammer {
+    color: brown;
+}
+
+.brown-chest {
+    color: brown;
+}
+
+.crate {
+    width: 100%;
+    height: 100%;
+    background-color: hsl(34, 44%, 50%);
+}
+
+.button--pressed {
+    background-color: var(--medium-grey);
 }
 
 /* Editor */
@@ -216,4 +297,19 @@ main {
 
 #editMaze {
     display: flex;
+}
+
+.cell--grey {
+    background-color: var(--dark-grey);
+}
+
+.editor-cell {
+    border: 1px solid black;
+}
+
+/* Animations */
+@keyframes fade-in-and-out {
+    0% { background-color: var(--light-grey); }
+    5% { background-color: var(--dark-grey); }
+    10% { background-color: var(--light-grey); }
 }
