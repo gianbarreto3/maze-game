@@ -2,7 +2,12 @@ export const Keys = {
     LEFT_ARROW: 'ArrowLeft',
     UP_ARROW: 'ArrowUp',
     RIGHT_ARROW: 'ArrowRight',
-    DOWN_ARROW: 'ArrowDown'
+    DOWN_ARROW: 'ArrowDown',
+    W: 'w',
+    A: 'a',
+    S: 's',
+    D: 'd',
+    R: 'r'
 };
 
 export const Object = {

@@ -79,22 +79,30 @@ export class Game {
         let toCell;
 
         switch (event.key) {
+            case Keys.A:
             case Keys.LEFT_ARROW:
                 toCell = playerPositionX - 1 > -1 ? this.maze.getCell(playerPositionX - 1, playerPositionY) : null;
                 this.player.move(Direction.Left, toCell, this.maze);
                 break;
+            case Keys.W:
             case Keys.UP_ARROW:
                 toCell = playerPositionY - 1 > -1 ? this.maze.getCell(playerPositionX, playerPositionY - 1) : null;
                 this.player.move(Direction.Up, toCell, this.maze);
                 break;
+            case Keys.D:
             case Keys.RIGHT_ARROW:
                 toCell = playerPositionX + 1 < this.maze.board[0].length ? this.maze.getCell(playerPositionX + 1, playerPositionY) : null;
                 this.player.move(Direction.Right, toCell, this.maze);
                 break;
+            case Keys.S:
             case Keys.DOWN_ARROW:
                 toCell = playerPositionY + 1 < this.maze.board.length ? this.maze.getCell(playerPositionX, playerPositionY + 1) : null;
                 this.player.move(Direction.Down, toCell, this.maze);
                 break;
+            case Keys.R:
+                this.endTimer();
+                this.restartLevel();
+                return;
         }
 
         if (this.playerMoved(playerPositionX, playerPositionY)) {
@@ -141,8 +149,10 @@ export class Game {
     }
 
     endTimer() {
-        clearInterval(this.levelTimer);
-        this.levelTimer = null;
+        if (this.levelTimer) {
+            clearInterval(this.levelTimer);
+            this.levelTimer = null;
+        }
     }
 
     gameOver() {
